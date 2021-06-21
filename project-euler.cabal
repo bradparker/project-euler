@@ -1,0 +1,31 @@
+cabal-version: 2.4
+name: project-euler
+version: 0.1.0.0
+author: Brad Parker
+maintainer: hi@bradparker.com
+
+common exe-base
+  build-depends: base ^>=4.14.1.0
+  default-language: Haskell2010
+
+executable 001
+  import: exe-base
+  build-depends: containers
+  hs-source-dirs: 001
+  main-is: Main.hs
+
+executable 002
+  import: exe-base
+  hs-source-dirs: 002
+  main-is: Main.hs
+
+executable 003
+  import: exe-base
+  hs-source-dirs: 003
+  main-is: Main.hs
+
+executable 004
+  import: exe-base
+  hs-source-dirs: 004
+  build-depends: mtl
+  main-is: Main.hs
