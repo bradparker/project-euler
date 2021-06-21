@@ -4,6 +4,12 @@ version: 0.1.0.0
 author: Brad Parker
 maintainer: hi@bradparker.com
 
+library
+  build-depends: base ^>=4.14.1.0
+  hs-source-dirs: lib
+  default-language: Haskell2010
+  exposed-modules: Primes
+
 common exe-base
   build-depends: base ^>=4.14.1.0
   default-language: Haskell2010
@@ -21,6 +27,7 @@ executable 002
 
 executable 003
   import: exe-base
+  build-depends: project-euler
   hs-source-dirs: 003
   main-is: Main.hs
 
@@ -28,4 +35,12 @@ executable 004
   import: exe-base
   hs-source-dirs: 004
   build-depends: mtl
+  main-is: Main.hs
+
+executable 005
+  import: exe-base
+  build-depends:
+    project-euler,
+    containers
+  hs-source-dirs: 005
   main-is: Main.hs
