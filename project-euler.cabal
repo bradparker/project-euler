@@ -44,3 +44,8 @@ executable 005
     containers
   hs-source-dirs: 005
   main-is: Main.hs
+
+executable 006
+  import: exe-base
+  hs-source-dirs: 006
+  main-is: Main.hs
