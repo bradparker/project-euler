@@ -61,3 +61,8 @@ executable 008
   build-depends: comonad
   hs-source-dirs: 008
   main-is: Main.hs
+
+executable 009
+  import: exe-base
+  hs-source-dirs: 009
+  main-is: Main.hs
