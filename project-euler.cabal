@@ -55,3 +55,9 @@ executable 007
   build-depends: project-euler
   hs-source-dirs: 007
   main-is: Main.hs
+
+executable 008
+  import: exe-base
+  build-depends: comonad
+  hs-source-dirs: 008
+  main-is: Main.hs
