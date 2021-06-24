@@ -9,13 +9,15 @@ module Main where
 -- Find the sum of all the primes below two million.
 
 import Data.Foldable (foldl')
+import Numeric.Natural (Natural)
 import Primes (primes)
+import qualified Stream
 
 sum' :: forall a t. (Num a, Foldable t) => t a -> a
 sum' = foldl' (+) 0
 
-solve :: Int -> Int
-solve n = sum' (takeWhile (< n) primes)
+solve :: Natural -> Natural
+solve n = sum' (Stream.takeWhile (< n) primes)
 
 main :: IO ()
 main = print (solve 2_000_000)

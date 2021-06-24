@@ -15,6 +15,7 @@ import Data.List (sortOn, uncons)
 import qualified Data.List.NonEmpty as NonEmpty
 import Data.Maybe (listToMaybe)
 import Data.Ord (Down (Down))
+import Numeric.Natural (Natural)
 import Primes (primeFactors)
 
 solve_1 :: Integral n => [n] -> Maybe n
@@ -40,14 +41,14 @@ solve_2 ns = uncurry go =<< uncons (map multiples (sortOn Down ns))
 -- Cheers Wikipedia!
 -- https://en.wikipedia.org/wiki/Least_common_multiple#Using_prime_factorization
 
-primePowers :: Int -> IntMap Int
+primePowers :: Natural -> IntMap Int
 primePowers =
   IntMap.fromList
-    . map (NonEmpty.head &&& length)
+    . map (fromIntegral . NonEmpty.head &&& length)
     . NonEmpty.group
     . primeFactors
 
-solve_3 :: [Int] -> Int
+solve_3 :: [Natural] -> Int
 solve_3 =
   product
     . map (uncurry (^))
