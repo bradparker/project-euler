@@ -66,3 +66,9 @@ executable 009
   import: exe-base
   hs-source-dirs: 009
   main-is: Main.hs
+
+executable 010
+  import: exe-base
+  build-depends: project-euler
+  hs-source-dirs: 010
+  main-is: Main.hs
