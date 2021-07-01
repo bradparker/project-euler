@@ -17,8 +17,11 @@ primeFactors = go primes
             else go ps n
 
 primes :: Stream Natural
-primes = 2 :> (Stream.iterate (+ 1) 3 \\ composites)
+primes = 2 :> (naturalsFrom 3 \\ composites)
   where
+    naturalsFrom :: Natural -> Stream Natural
+    naturalsFrom = Stream.enumFrom
+
     composites :: Stream Natural
     composites = Stream.unionAll (multiples <$> primes)
 
