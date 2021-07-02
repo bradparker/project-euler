@@ -74,3 +74,11 @@ executable 010
   build-depends: project-euler
   hs-source-dirs: 010
   main-is: Main.hs
+
+executable 011
+  import: exe-base
+  build-depends:
+    array,
+    comonad,
+  hs-source-dirs: 011
+  main-is: Main.hs
