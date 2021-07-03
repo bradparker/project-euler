@@ -52,8 +52,11 @@ bounds (Grid v w) = ((0, 0), (w - 1, (Vector.length v `div` w) - 1))
 (!?) :: Grid a -> Point -> Maybe a
 g !? i = vector g Vector.!? unsafeIndex (bounds g) i
 
-grid :: [[a]] -> Maybe (Grid a)
-grid rows = Grid (Vector.fromList (mconcat rows)) <$> listToMaybe (map length rows)
+grid :: [[a]] -> Grid a
+grid rows =
+  Grid
+    (Vector.fromList (mconcat rows))
+    (maybe 0 length (listToMaybe rows))
 
 type Cursor a = Store Point (Maybe a)
 
@@ -90,10 +93,10 @@ solve n g =
         (range (bounds g))
     )
 
-parseInput :: String -> Maybe (Grid Natural)
+parseInput :: String -> Grid Natural
 parseInput = grid . ((read <$>) . words <$>) . lines
 
 main :: IO ()
 main = do
-  Just input <- parseInput <$> getContents
+  input <- parseInput <$> getContents
   print (solve 4 input)
