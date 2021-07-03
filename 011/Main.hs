@@ -33,27 +33,27 @@ module Main where
 -- direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
 import Control.Comonad.Store (Comonad (extend), Store, peek, peeks, store)
-import Data.Array (Array, Ix (inRange, range), array, bounds, (!))
+import Data.Maybe (listToMaybe)
+import Data.Vector (Vector)
+import qualified Data.Vector as Vector
+import GHC.Ix (Ix (range, unsafeIndex))
 import Numeric.Natural (Natural)
 
 type Point = (Int, Int)
 
 type Move = (Int, Int)
 
-type Grid a = Array Point a
+data Grid a = Grid {vector :: Vector a, width :: Int}
+  deriving (Show)
 
-(!?) :: Ix i => Array i a -> i -> Maybe a
-a !? i = if inRange (bounds a) i then Just (a ! i) else Nothing
+bounds :: Grid a -> (Point, Point)
+bounds (Grid v w) = ((0, 0), (w - 1, (Vector.length v `div` w) - 1))
 
-grid :: [[a]] -> Grid a
-grid rows =
-  array ((0, 0), (width, height)) do
-    (y, row) <- zip [0 ..] rows
-    (x, val) <- zip [0 ..] row
-    return ((x, y), val)
-  where
-    width = maximum (map length rows) - 1
-    height = length rows - 1
+(!?) :: Grid a -> Point -> Maybe a
+g !? i = vector g Vector.!? unsafeIndex (bounds g) i
+
+grid :: [[a]] -> Maybe (Grid a)
+grid rows = Grid (Vector.fromList (mconcat rows)) <$> listToMaybe (map length rows)
 
 type Cursor a = Store Point (Maybe a)
 
@@ -90,10 +90,10 @@ solve n g =
         (range (bounds g))
     )
 
-parseInput :: String -> Grid Natural
+parseInput :: String -> Maybe (Grid Natural)
 parseInput = grid . ((read <$>) . words <$>) . lines
 
 main :: IO ()
 main = do
-  input <- parseInput <$> getContents
+  Just input <- parseInput <$> getContents
   print (solve 4 input)

@@ -43,7 +43,7 @@ executable 005
   import: exe-base
   build-depends:
     project-euler,
-    containers
+    containers,
   hs-source-dirs: 005
   main-is: Main.hs
 
@@ -78,7 +78,7 @@ executable 010
 executable 011
   import: exe-base
   build-depends:
-    array,
     comonad,
+    vector,
   hs-source-dirs: 011
   main-is: Main.hs
