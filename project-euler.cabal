@@ -84,3 +84,12 @@ executable 011
     vector,
   hs-source-dirs: 011
   main-is: Main.hs
+
+executable 012
+  import: exe-base
+  build-depends:
+    containers,
+    mtl,
+    project-euler,
+  hs-source-dirs: 012
+  main-is: Main.hs
