@@ -98,3 +98,11 @@ executable 013
   import: exe-base
   hs-source-dirs: 013
   main-is: Main.hs
+
+executable 014
+  import: exe-base
+  build-depends:
+    containers,
+    mtl,
+  hs-source-dirs: 014
+  main-is: Main.hs
