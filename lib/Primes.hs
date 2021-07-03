@@ -2,6 +2,10 @@
 
 module Primes where
 
+import Control.Arrow ((&&&))
+import Data.IntMap (IntMap)
+import qualified Data.IntMap as IntMap
+import qualified Data.List.NonEmpty as NonEmpty
 import Numeric.Natural (Natural)
 import Stream (Stream ((:>)), (\\))
 import qualified Stream
@@ -27,3 +31,10 @@ primes = 2 :> (naturalsFrom 3 \\ composites)
 
     multiples :: Natural -> Stream Natural
     multiples n = Stream.iterate (+ n) (n * n)
+
+primePowers :: Natural -> IntMap Int
+primePowers =
+  IntMap.fromList
+    . map (fromIntegral . NonEmpty.head &&& length)
+    . NonEmpty.group
+    . primeFactors
