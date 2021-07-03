@@ -93,3 +93,8 @@ executable 012
     project-euler,
   hs-source-dirs: 012
   main-is: Main.hs
+
+executable 013
+  import: exe-base
+  hs-source-dirs: 013
+  main-is: Main.hs
