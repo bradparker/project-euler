@@ -104,5 +104,7 @@ executable 014
   build-depends:
     containers,
     mtl,
+    recursion-schemes,
+    algebraic-graphs,
   hs-source-dirs: 014
   main-is: Main.hs
