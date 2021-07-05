@@ -107,3 +107,8 @@ executable 014
     recursion-schemes,
   hs-source-dirs: 014
   main-is: Main.hs
+
+executable 015
+  import: exe-base
+  hs-source-dirs: 015
+  main-is: Main.hs
