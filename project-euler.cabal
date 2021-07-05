@@ -105,6 +105,5 @@ executable 014
     containers,
     mtl,
     recursion-schemes,
-    algebraic-graphs,
   hs-source-dirs: 014
   main-is: Main.hs
