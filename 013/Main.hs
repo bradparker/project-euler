@@ -105,15 +105,16 @@ module Main where
 -- 20849603980134001723930671666823555245252804609722
 -- 53503534226472524250874054075591789781264330331690
 
+import Digits (digits, undigits)
 import Numeric.Natural (Natural)
 
-parseInput :: String -> [Natural]
-parseInput = map read . lines
+parseInput :: Int -> String -> [Natural]
+parseInput n = map (read . take n) . lines
 
-solve :: Int -> [Natural] -> String
-solve n = take n . show . sum
+solve :: Int -> [Natural] -> Natural
+solve n = undigits . take n . digits . sum
 
 main :: IO ()
 main = do
-  input <- parseInput <$> getContents
-  putStrLn (solve 10 input)
+  input <- parseInput 10 <$> getContents
+  print (solve 10 input)

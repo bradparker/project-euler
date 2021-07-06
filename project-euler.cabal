@@ -13,6 +13,7 @@ library
   exposed-modules:
     Primes
     Stream
+    Digits
 
 common exe-base
   build-depends: base ^>=4.14.1.0
@@ -38,7 +39,9 @@ executable 003
 executable 004
   import: exe-base
   hs-source-dirs: 004
-  build-depends: mtl
+  build-depends:
+    mtl,
+    project-euler,
   main-is: Main.hs
 
 executable 005
@@ -96,6 +99,8 @@ executable 012
 
 executable 013
   import: exe-base
+  build-depends:
+    project-euler
   hs-source-dirs: 013
   main-is: Main.hs
 
@@ -108,7 +113,9 @@ executable 014
   hs-source-dirs: 014
   main-is: Main.hs
 
-executable 015
+executable 016
   import: exe-base
-  hs-source-dirs: 015
+  build-depends:
+    project-euler
+  hs-source-dirs: 016
   main-is: Main.hs

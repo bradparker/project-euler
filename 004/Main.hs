@@ -10,8 +10,9 @@ module Main where
 -- numbers.
 
 import Control.Monad.State (StateT (StateT), evalStateT)
-import Data.List (find, sortOn, unfoldr, uncons)
+import Data.List (find, sortOn, uncons, unfoldr)
 import Data.Ord (Down (Down))
+import Digits (digits)
 
 unconses :: [a] -> [(a, [a])]
 unconses = unfoldr \as ->
@@ -21,12 +22,6 @@ unconses = unfoldr \as ->
 
 threeDigitProducts :: [Int]
 threeDigitProducts = evalStateT ((*) <$> StateT unconses <*> StateT unconses) [100 .. 999]
-
-digits :: Int -> [Int]
-digits = unfoldr \n ->
-  case divMod n 10 of
-    (0, 0) -> Nothing
-    (n', r) -> Just (r, n')
 
 isPalindrome :: Int -> Bool
 isPalindrome n = let ds = digits n in ds == reverse ds
