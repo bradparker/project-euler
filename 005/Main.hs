@@ -8,16 +8,21 @@ module Main where
 -- What is the smallest positive number that is evenly divisible by all
 -- of the numbers from 1 to 20?
 
-import qualified Data.IntMap as IntMap
+import qualified Data.Map as Map
 import Numeric.Natural (Natural)
 import Primes (primePowers)
 
-solve :: [Natural] -> Int
-solve =
+leastCommonMultiple :: [Natural] -> Natural
+leastCommonMultiple =
   product
     . map (uncurry (^))
-    . IntMap.assocs
-    . foldr (IntMap.unionWith max . primePowers) IntMap.empty
+    . Map.assocs
+    . foldr
+      ( Map.unionWith max
+          . Map.fromAscList
+          . primePowers
+      )
+      Map.empty
 
 main :: IO ()
-main = print (solve [1 .. 20])
+main = print (leastCommonMultiple [1 .. 20])

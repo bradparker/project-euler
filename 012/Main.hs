@@ -28,7 +28,6 @@ module Main where
 -- What is the value of the first triangle number to have over five
 -- hundred divisors?
 
-import qualified Data.IntMap as IntMap
 import Data.List (find)
 import Numeric.Natural (Natural)
 import Primes (primePowers)
@@ -36,10 +35,10 @@ import Primes (primePowers)
 triangles :: [Natural]
 triangles = scanl (+) 1 [2 ..]
 
-numFactors :: Natural -> Int
-numFactors = product . map (+ 1) . IntMap.elems . primePowers
+numFactors :: Natural -> Natural
+numFactors = product . map ((+ 1) . snd) . primePowers
 
-solve :: Int -> Maybe Natural
+solve :: Natural -> Maybe Natural
 solve n = find ((n <=) . numFactors) triangles
 
 main :: IO ()
