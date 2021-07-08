@@ -41,16 +41,16 @@ import Numeric.Natural (Natural)
 collatzSizes :: [Int] -> IntMap Int
 collatzSizes ns = execState (traverse collatzSize' ns) IntMap.empty
   where
-    collatzSize' :: Int -> State (IntMap Int) Int
-    collatzSize' 1 = pure 1
-    collatzSize' n = do
+    size :: Int -> State (IntMap Int) Int
+    size 1 = pure 1
+    size n = do
       existing <- gets (IntMap.lookup n)
       case existing of
         Nothing -> do
-          size <- (1 +) <$> collatzSize' (collatz n)
-          modify (IntMap.insert n size)
-          pure size
-        Just size -> pure size
+          s <- (1 +) <$> size (collatz n)
+          modify (IntMap.insert n s)
+          pure s
+        Just s -> pure s
 
 solve :: Int -> Int
 solve n =
