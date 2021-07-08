@@ -126,3 +126,8 @@ executable 017
     containers
   hs-source-dirs: 017
   main-is: Main.hs
+
+executable 018
+  import: exe-base
+  hs-source-dirs: 018
+  main-is: Main.hs
