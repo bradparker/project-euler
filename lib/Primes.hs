@@ -10,12 +10,13 @@ import Numeric.Natural (Natural)
 import Stream (Stream ((:>)), (\\))
 import qualified Stream
 
-primeFactors :: Natural -> [Natural]
+primeFactors :: Integral n => n -> [Natural]
 primeFactors = go primes
   where
+    go _ (-1) = []
     go _ 1 = []
     go (p :> ps) n =
-      let (n', r) = divMod n p
+      let (n', r) = quotRem n (fromIntegral p)
        in if r == 0
             then p : go (p :> ps) n'
             else go ps n
