@@ -25,12 +25,12 @@ module Main where
 -- million.
 
 import Control.Monad.Reader (Reader, ask, local, runReader)
-import Control.Monad.State (State, execState, gets, modify)
+import Control.Monad.State.Strict (State, execState, gets, modify)
 import Data.Function (on)
 import Data.Functor.Base (ListF (Cons, Nil), TreeF (NodeF))
 import Data.Functor.Foldable (fold, unfold)
-import Data.IntMap (IntMap)
-import qualified Data.IntMap as IntMap
+import Data.IntMap.Strict (IntMap)
+import qualified Data.IntMap.Strict as IntMap
 import Data.List (genericLength, maximumBy)
 import Data.Set (Set)
 import qualified Data.Set as Set
