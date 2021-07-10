@@ -152,3 +152,8 @@ executable 021
     project-euler,
   hs-source-dirs: 021
   main-is: Main.hs
+
+executable 022
+  import: exe-base
+  hs-source-dirs: 022
+  main-is: Main.hs
