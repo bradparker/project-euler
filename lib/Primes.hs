@@ -3,7 +3,10 @@
 module Primes where
 
 import Control.Arrow ((&&&))
+import Data.List (subsequences)
 import qualified Data.List.NonEmpty as NonEmpty
+import Data.Set (Set)
+import qualified Data.Set as Set
 import Numeric.Natural (Natural)
 import Stream (Stream ((:>)), (\\))
 import qualified Stream
@@ -18,6 +21,9 @@ primeFactors = go primes
        in if r == 0
             then p : go (p :> ps) n'
             else go ps n
+
+factors :: Integral n => n -> Set Natural
+factors = Set.fromList . map product . subsequences . primeFactors
 
 primes :: Stream Natural
 primes = 2 :> (naturalsFrom 3 \\ composites)

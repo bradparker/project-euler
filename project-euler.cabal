@@ -145,3 +145,10 @@ executable 020
     project-euler
   hs-source-dirs: 020
   main-is: Main.hs
+
+executable 021
+  import: exe-base
+  build-depends:
+    project-euler,
+  hs-source-dirs: 021
+  main-is: Main.hs
