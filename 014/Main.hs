@@ -39,7 +39,7 @@ import qualified Data.Tree as Tree
 import Numeric.Natural (Natural)
 
 collatzSizes :: [Int] -> IntMap Int
-collatzSizes ns = execState (traverse collatzSize' ns) IntMap.empty
+collatzSizes ns = execState (traverse size ns) IntMap.empty
   where
     size :: Int -> State (IntMap Int) Int
     size 1 = pure 1
