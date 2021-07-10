@@ -138,3 +138,10 @@ executable 019
     mtl
   hs-source-dirs: 019
   main-is: Main.hs
+
+executable 020
+  import: exe-base
+  build-depends:
+    project-euler
+  hs-source-dirs: 020
+  main-is: Main.hs
