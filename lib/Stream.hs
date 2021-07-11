@@ -5,7 +5,7 @@
 module Stream where
 
 import Numeric.Natural (Natural)
-import Prelude hiding (iterate, take, takeWhile, (!!))
+import Prelude hiding (filter, iterate, take, takeWhile, (!!))
 
 data Stream a = a :> Stream a
 
@@ -40,6 +40,9 @@ takeWhile p = fold (\x acc -> if p x then x : acc else [])
 
 enumFrom :: Enum a => a -> Stream a
 enumFrom = iterate succ
+
+filter :: (a -> Bool) -> Stream a -> Stream a
+filter p (x :> xs) = if p x then x :> filter p xs else filter p xs
 
 instance Functor Stream where
   fmap :: (a -> b) -> Stream a -> Stream b
