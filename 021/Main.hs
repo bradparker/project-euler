@@ -12,10 +12,10 @@ module Main where
 -- Find the sum of the digits in the number 100!
 
 import Numeric.Natural (Natural)
-import Primes (factors)
+import Primes (sigma)
 
-d :: Integral n => n -> Natural
-d = subtract . fromIntegral <*> sum . factors . fromIntegral
+d :: Natural -> Natural
+d = subtract <*> sigma
 
 isAmicable :: Natural -> Bool
 isAmicable a = let b = d a in a /= b && d b == a

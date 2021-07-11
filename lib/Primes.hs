@@ -1,3 +1,4 @@
+{-# LANGUAGE ExplicitForAll #-}
 {-# OPTIONS_GHC -Wall #-}
 
 module Primes where
@@ -43,3 +44,9 @@ primePowers =
     . primeFactors
   where
     genericLength = foldr (const (+ 1)) 0
+
+sigma :: forall n. Integral n => n -> Natural
+sigma =
+  product
+    . map (\(p, a) -> (p ^ (a + 1) - 1) `div` (p - 1))
+    . primePowers
