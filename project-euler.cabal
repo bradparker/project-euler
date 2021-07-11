@@ -157,3 +157,10 @@ executable 022
   import: exe-base
   hs-source-dirs: 022
   main-is: Main.hs
+
+executable 023
+  import: exe-base
+  build-depends:
+    project-euler
+  hs-source-dirs: 023
+  main-is: Main.hs
