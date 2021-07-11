@@ -14,8 +14,7 @@ import qualified Stream
 primeFactors :: Integral n => n -> [Natural]
 primeFactors = go primes
   where
-    go _ (-1) = []
-    go _ 1 = []
+    go _ n | abs n == 1 = []
     go (p :> ps) n =
       let (n', r) = quotRem n (fromIntegral p)
        in if r == 0
