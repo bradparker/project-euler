@@ -4,6 +4,7 @@
 module Primes where
 
 import Control.Arrow ((&&&))
+import Data.Foldable (foldl')
 import Data.List (subsequences)
 import qualified Data.List.NonEmpty as NonEmpty
 import Data.Set (Set)
@@ -43,10 +44,14 @@ primePowers =
     . NonEmpty.group
     . primeFactors
   where
-    genericLength = foldr (const (+ 1)) 0
+    genericLength :: forall t a n. (Foldable t, Num n) => t a -> n
+    genericLength = foldl' (const . (+ 1)) 0
 
 sigma :: forall n. Integral n => n -> Natural
 sigma =
-  product
+  product'
     . map (\(p, a) -> (p ^ (a + 1) - 1) `div` (p - 1))
     . primePowers
+  where
+    product' :: forall t n. (Foldable t, Num n) => t n -> n
+    product' = foldl' (*) 1
