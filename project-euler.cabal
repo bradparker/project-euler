@@ -171,3 +171,10 @@ executable 024
     mtl
   hs-source-dirs: 024
   main-is: Main.hs
+
+executable 025
+  import: exe-base
+  build-depends:
+    project-euler
+  hs-source-dirs: 025
+  main-is: Main.hs
