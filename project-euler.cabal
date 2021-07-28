@@ -178,3 +178,11 @@ executable 025
     project-euler
   hs-source-dirs: 025
   main-is: Main.hs
+
+executable 026
+  import: exe-base
+  build-depends:
+    project-euler,
+    containers,
+  hs-source-dirs: 026
+  main-is: Main.hs
