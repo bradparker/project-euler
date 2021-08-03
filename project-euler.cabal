@@ -51,6 +51,19 @@ executable 005
     containers,
   hs-source-dirs: 005
   main-is: Main.hs
+  other-modules:
+    Solution
+
+executable 005-benchmark
+  import: exe-base
+  build-depends:
+    project-euler,
+    containers,
+    criterion,
+  hs-source-dirs: 005
+  main-is: Benchmark.hs
+  other-modules:
+    Solution
 
 executable 006
   import: exe-base
